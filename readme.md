@@ -53,4 +53,4 @@ Project is: _in progress_
 
 ## Contact
 
-Created by [@kocurr] - feel free to contact me!
+Created by kocurr - feel free to contact me!
