@@ -35,7 +35,8 @@ To run this project, follow these steps:
 4. After that you can do a few things. Firstly check all available city witch you can use to check the weather. To do that enter:
    ```sh
    node checkCities.js
-   Result will be shows in the consol or save in the 'data' directory, in the file - 'availableCities.txt'
+
+Result will be shows in the consol or save in the 'data' directory, in the file - 'availableCities.txt'
 * To check the weather in a city in Poland, enter:
    ```sh
   node index.js polishCityName
