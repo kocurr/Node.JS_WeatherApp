@@ -25,6 +25,15 @@ const processWeatherData = async (data, cityName) => {
   const weatherInfo = `In ${cityName} is ${temperature}°C, a humidity is ${humidity}% and pressure is ${pressure}hPa.\nLast measurement was at ${measurement_time}:00\n`;
   console.log(weatherInfo);
 
+  try {
+    await mkdir('./data')
+        .catch (err => {
+          if (err.code === "EEXIST");
+        });
+  } catch (e) {
+    console.log("Something goes wrong!",e);
+  }
+
   const dateTimeString = new Date().toLocaleString();
   await appendFile(getDataFileName(cityName), `Last update - ${dateTimeString}\n${weatherInfo}`);
 }
