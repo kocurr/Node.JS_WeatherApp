@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
-const { appendFile } = require('fs').promises;
-const {normalize, resolve} = require('path');
+const { appendFile, readdir, mkdir, d } = require('fs').promises;
+const { normalize, resolve } = require('path');
 
 function safeJoin(base, target) {
   const targetPath = `.${normalize(`/${target}`)}`;
@@ -10,7 +10,7 @@ function safeJoin(base, target) {
 const getDataFileName = city => safeJoin('./data', `${city}.txt`);
 
 const processWeatherData = async (data, cityName) => {
-  const foundData =data.find(stationData => stationData.stacja === cityName);
+  const foundData = data.find(stationData => stationData.stacja === cityName);
 
   if(!foundData){
     throw new Error(`There is no such station in our API like ${cityName}`);
@@ -22,7 +22,7 @@ const processWeatherData = async (data, cityName) => {
     cisnienie: pressure,
     godzina_pomiaru: measurement_time,
   } = foundData;
-  const weatherInfo = `In ${cityName} is ${temperature}°C, a humidity is ${humidity}% and pressure is ${pressure}hPa.\nLast measurement was at ${measurement_time}:00`;
+  const weatherInfo = `In ${cityName} is ${temperature}°C, a humidity is ${humidity}% and pressure is ${pressure}hPa.\nLast measurement was at ${measurement_time}:00\n`;
   console.log(weatherInfo);
 
   const dateTimeString = new Date().toLocaleString();
@@ -39,4 +39,6 @@ const checkCityWeather = async cityName => {
   }
 }
 
-checkCityWeather('Tarnów');
+const cityName = process.argv[2];
+
+checkCityWeather(cityName);
